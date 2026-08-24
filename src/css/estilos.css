@@ -1,0 +1,67 @@
+/* ==========================================
+   1. REGRAS GLOBAIS (Válidas para TODAS as páginas)
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================
+   2. APENAS PÁGINA INICIAL
+   ========================== */
+
+/* Limita a trava de rolagem e tela cheia só para a página inicial */
+body.pagina-inicial {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Força o link da página inicial a ocupar 100% da tela */
+.pagina-inicial .link-fundo {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Imagem de fundo preenchendo 100% sem distorcer */
+.pagina-inicial .full-screen-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+/* Imagem do texto centralizado por cima do personagem */
+.pagina-inicial .letras_diferentes {
+  position: absolute;
+  left: 50%;
+  top: 35%; /* Ajuste a altura conforme necessário */
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 100vw, 1000px);
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Efeito de digitação fixo no canto inferior */
+.texto-canto {
+  position: fixed;
+  bottom: clamp(10px, 3vw, 20px);
+  right: clamp(10px, 3vw, 20px);
+  font-family: 'elite';
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  color: #ffffff;
+  border-right: 2px solid #ffffff;
+  white-space: nowrap;
+  padding-right: 5px;
+  z-index: 9999;
+  animation: piscar 0.75s step-end infinite;
+}
+
+@keyframes piscar {
+  from, to { border-color: transparent; }
+  50% { border-color: #ffffff; }
+}

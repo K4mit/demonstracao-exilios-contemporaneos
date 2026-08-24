@@ -1,0 +1,55 @@
+/*--------------------------------------
+    PARTE RESPONSIVA DA PRIMEIRA PÁGINA
+    ------------------------------------*/
+
+@media (max-width: 768px) {
+  .letras_diferentes {
+    width: 130vw;        /* Aumenta a largura para ocupar quase a tela inteira */
+    max-width: none;    /* Remove qualquer limite de tamanho que esteja encolhendo a imagem */
+    top: 42%;           /* Aumente este valor para empurrar o texto PARA BAIXO, perto da cabeça */
+  }
+}
+
+/* Para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+  .letras_diferentes {
+    width: 125vw;
+    top: 42%;      /* Ajuste fino para telas pequenas */
+  }
+}
+
+/* Ajustes para telas de tablets e celulares (texto digitado)*/
+@media (max-width: 768px) {
+  .texto-canto {
+    font-size: 2.8rem;     /* Reduz o tamanho da fonte para caber em telas menores */
+    bottom: 12px;          /* Ajusta o espaçamento em relação à borda inferior */
+    right: 12px;           /* Ajusta o espaçamento em relação à borda direita */
+    max-width: 85vw;       /* Garante que a frase nunca passe de 85% da largura da tela */
+    overflow: hidden;      /* Esconde qualquer excesso de texto que possa estourar a tela */
+  }
+}
+
+/* Ajustes finos para celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+  .texto-canto {
+    font-size: 2.2rem;     /* Fonte ainda menor para frases longas couberem em uma só linha */
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  /* Reduz a fonte para a frase couber inteira sem cortar no canto */
+  .texto-canto {
+    font-size: 1.2rem;
+    right: 8px;
+    bottom: 10px;
+  }
+
+  /* Aumenta o título e aproxima da cabeça do personagem */
+  .pagina-inicial .letras_diferentes {
+    width: 99vw;
+    top: 39%;
+  }
+}
+

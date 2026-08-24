@@ -1,0 +1,14 @@
+@font-face{
+    font-family: 'elite';
+    src: url(../fontes/Special_Elite/SpecialElite-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'courier';
+    src: url(../fontes/Courier_Prime/CourierPrime-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'im_fell';
+    src: url(../fontes/IM_Fell_English/IMFellEnglish-Regular.ttf);
+}
