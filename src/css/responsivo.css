@@ -53,3 +53,44 @@
   }
 }
 
+
+/*--------------------------------------
+    PARTE RESPONSIVA DA SEGUNDA PÁGINA
+    ------------------------------------*/
+
+@media (max-width: 768px) {
+  
+  /* Transforma a tela numa coluna empilhada e centralizada */
+  body.pagina-passagem {
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Tira o texto do canto e o coloca no centro */
+  .pagina-passagem .texto-superior {
+    position: static;
+    text-align: center;
+    margin-bottom: 25px; /* Dá um respiro entre o texto e a porta */
+    font-size: clamp(1.9rem, 2rem, 2.7rem); /* Garante que o texto não quebre em celulares finos */
+  }
+
+  /* Ajuste crucial da porta para o celular */
+  .pagina-passagem .porta-interativa {
+    height: 78vh;          /* Reduz a altura para 60% para dar espaço ao texto em cima */
+    width: auto;           /* Mantém a proporção correta */
+    object-fit: contain;   /* Trava de segurança: impede qualquer achatamento da imagem */
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .pagina-passagem .texto-superior {
+    margin-bottom: 15px; /* Reduz o espaço entre o texto e a porta */
+    font-size: 1.5rem;   /* Deixa a fonte um pouquinho menor */
+  }
+
+  .pagina-passagem .porta-interativa {
+    height: 70vh;        /* Encolhe a porta mais um pouco para caber certinho */
+  }
+}

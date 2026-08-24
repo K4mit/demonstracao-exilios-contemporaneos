@@ -12,6 +12,7 @@
 </head>
 
 <body class="pagina-inicial">
+    <div class="overlay-transicao"></div>
 
     <a href="passagem.html" class="link-fundo"><img src="src/imagens/img_tudo_aqui_e_exilio.gif" alt="Imagem em tela cheia"
             class="full-screen-img">
@@ -20,7 +21,9 @@
     <img src="src/imagens/texto_pag_inicial.png" alt="Texto com letras personalizadas" class="letras_diferentes">
 </body>
 
-<p id="texto-maquina" class="texto-canto"></p>
+<!-- O texto guardado no atributo data-texto -->
+<p class="texto-canto efeito-digitacao" data-texto="Toque para se virar"></p>
 
+<script src="src/js/global.js"></script>
 <script src="src/js/index.js"></script>
 </html>

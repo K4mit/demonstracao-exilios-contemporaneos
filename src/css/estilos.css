@@ -5,10 +5,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
+
 /* ==========================
-   2. APENAS PÁGINA INICIAL
+       2. PÁGINA INICIAL
    ========================== */
 
 /* Limita a trava de rolagem e tela cheia só para a página inicial */
@@ -64,4 +66,72 @@ body.pagina-inicial {
 @keyframes piscar {
   from, to { border-color: transparent; }
   50% { border-color: #ffffff; }
+}
+
+/* Camada preta invisível por cima de tudo (Troca entre a primeira pág pra segunda)*/
+.overlay-transicao {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out; /* Duração da piscada */
+  z-index: 99999;
+}
+
+/* Classe ativada no clique para escurecer a tela */
+.overlay-transicao.ativa {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ==========================
+       3. PÁGINA PASSAGEM (PORTA)
+   ========================== */
+
+.pagina-passagem {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;/* Flexbox para deixar a porta exatamente no meio */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #d0cbb5;
+}
+
+/* Posiciona o texto no canto superior esquerdo */
+.pagina-passagem .texto-superior {
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  margin: 0;
+  
+  /* Mantém a estética da máquina de escrever */
+  font-family: 'im_fell'; /* Ou a fonte customizada que estiver usando */
+  font-size: clamp(1.2rem, 4vw, 3rem);
+  color: #1a1a1a; /* Cor escura para contrastar com o fundo */
+  border-right: 2px solid #1a1a1a;
+  white-space: nowrap;
+  
+  animation: piscar 0.75s step-end infinite;
+}
+
+/* Tamanho responsivo da porta */
+.pagina-passagem .porta-interativa {
+  height: 81vh;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Leve efeito de zoom ao passar o mouse por cima da porta */
+.pagina-passagem .porta-interativa:hover {
+  transform: scale(1.02);
 }

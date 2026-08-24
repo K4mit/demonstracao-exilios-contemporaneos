@@ -1,16 +1,17 @@
-/*BLOCO JS DA PRIMEIRA PÁGINA*/
+document.addEventListener('DOMContentLoaded', () => {
+  const linkFundo = document.querySelector('.link-fundo');
+  const overlay = document.querySelector('.overlay-transicao');
 
-const textoElemento = document.getElementById('texto-maquina');
-const mensagem = "Toque para se Virar";
-let indice = 0;
+  if (linkFundo && overlay) {
+    linkFundo.addEventListener('click', (event) => {
+      event.preventDefault();
+      const destino = linkFundo.getAttribute('href');
 
-function digitar() {
-  if (indice < mensagem.length) {
-    textoElemento.textContent += mensagem.charAt(indice);
-    indice++;
-    setTimeout(digitar, 100); /* Velocidade em milissegundos por letra */
+      overlay.classList.add('ativa');
+
+      setTimeout(() => {
+        window.location.href = destino;
+      }, 800);
+    });
   }
-}
-
-// Inicia a animação assim que a página carregar
-window.onload = digitar;
+});
