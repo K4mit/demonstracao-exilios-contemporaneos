@@ -94,3 +94,62 @@
     height: 70vh;        /* Encolhe a porta mais um pouco para caber certinho */
   }
 }
+
+/* === MODO PAPEL (TEXTOS INTERATIVOS) === */
+#conteudo-centro {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Define um tamanho limite para a área central */
+  width: clamp(250px, 35vw, 450px); 
+  height: clamp(350px, 60vh, 650px);
+}
+
+#imagem-popup {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#container-papel {
+  width: 100%;
+  height: 100%;
+  background-image: url('../imagens/visu_icone_folha.jpeg'); 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Esse padding "empurra" o texto pra não encostar nas bordas rasgadas do desenho */
+  padding: 15% 12%; 
+  box-sizing: border-box;
+}
+
+#texto-papel {
+  font-family: 'courier';
+  font-size: clamp(14px, 2vw, 20px);
+  color: #1a1a1a;
+  text-align: left;
+  line-height: 1.5;
+  margin: 0;
+  /* Se o texto for gigante, cria uma barrinha de rolagem só dentro do papel */
+  overflow-y: auto; 
+  max-height: 100%;
+}
+
+/* Deixa as setas clicáveis e com efeito */
+.mao-aponta {
+  cursor: pointer;
+}
+.mao-aponta:hover {
+  transform: scale(1.1);
+}
+
+/* === CORREÇÃO DE VISIBILIDADE NO POP-UP === */
+#conteudo-centro .escondido,
+#seta-esquerda.escondido,
+#seta-direita.escondido {
+  display: none !important;
+}

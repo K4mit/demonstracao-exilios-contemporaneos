@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,95 @@
     <link rel="stylesheet" href="src/css/estilos.css">
     <link rel="stylesheet" href="src/css/responsivo.css">
 </head>
-<body>
-    
+
+<body class="pagina-bau">
+    <!-- Tela preta que vai clarear assim que a página carregar -->
+    <div class="overlay-transicao ativa"></div>
+
+    <!-- Imagem de fundo da lanterna -->
+    <img src="src/imagens/fundo_pag_bau.png" class="luz-fundo" alt="Luz da lanterna">
+
+    <div class="cena-bau">
+
+        <!-- ESTADO 1: As 5 mãos (Visíveis inicialmente) -->
+        <div id="grupo-maos" class="grupo-elementos">
+            <img src="src/imagens/maozinha_apontando.png" class="mao mao-1" style="--rot: 105deg;" alt="">
+            <img src="src/imagens/maozinha_apontando.png" class="mao mao-2" style="--rot: 145deg;" alt="">
+            <img src="src/imagens/maozinha_apontando.png" class="mao mao-3" style="--rot: 180deg;" alt="">
+            <img src="src/imagens/maozinha_apontando.png" class="mao mao-4" style="--rot: 215deg;" alt="">
+            <img src="src/imagens/maozinha_apontando.png" class="mao mao-5" style="--rot: 255deg;" alt="">
+        </div>
+
+        <!-- ESTADO 2: Os 5 itens (Escondidos inicialmente) -->
+        <div id="grupo-itens" class="grupo-elementos escondido">
+            <img src="src/imagens/icone_console.jpeg" class="item item-psp" alt="PSP">
+            <img src="src/imagens/icone_livros.jpeg" class="item item-livros" alt="Livros">
+            <img src="src/imagens/icone_cam.jpeg" class="item item-cam" alt="Câmera">
+            <img src="src/imagens/icone_folhas_soltas.jpeg" class="item item-papeis" alt="Papéis">
+            <img src="src/imagens/icone_mp3.jpeg" class="item item-mp3" alt="Mp3">
+        </div>
+
+        <!-- O Baú Central -->
+        <img id="imagem-bau" src="src/imagens/bau_img.png" class="bau-interativo" alt="Baú fechado">
+
+    </div>
+
+    <!-- Pop-up de Destaque -->
+    <div id="overlay-popup" class="escondido">
+        <!-- Botão Fechar -->
+        <img id="btn-fechar" src="src/imagens/x_sair_pop_up.png" alt="Fechar X">
+
+        <!-- Container central com mãos e o conteúdo -->
+        <div class="container-destaque">
+            <!-- Mão Esquerda (Fica fora dos conteúdos, para servir a todos) -->
+            <img src="src/imagens/seta_esquerda.jpeg" id="seta-esquerda" class="mao-aponta escondido" alt="Seta esquerda">
+
+            <!-- ÁREA ONDE OS CONTEÚDOS APARECEM -->
+            <div id="area-conteudo-popup">
+
+                <!-- 1. MODO IMAGEM SIMPLES (PSP, Câmera, Livros) -->
+                <div id="conteudo-simples" class="conteudo-item escondido">
+                    <img id="imagem-popup-simples" src="" alt="Item em destaque">
+                </div>
+
+                <!-- 2. MODO PAPEL (Com texto rolável) -->
+                <div id="conteudo-papeis" class="conteudo-item escondido">
+                    <div id="container-papel">
+                        <img src="src/imagens/visu_icone_folha.jpeg" class="imagem-fundo-papel" alt="Fundo de papel">
+                        <div class="texto-sobre-papel">
+                            <p id="texto-papel"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. MODO MP3 (Vídeo YT + Caixa de Info) -->
+                <div id="conteudo-mp3" class="conteudo-item escondido">
+                    <div id="container-mp3">
+                        <!-- Aparelho MP3 -->
+                        <div class="aparelho-mp3">
+                            <img src="src/imagens/visu_icone_mp3.jpeg" class="fundo-mp3" alt="Aparelho MP3">
+                            <iframe id="video-yt" src="" frameborder="0" allowfullscreen></iframe>
+                        </div>
+
+                        <!-- Caixa de Informações -->
+                        <div class="caixa-info-mp3">
+                            <img src="src/imagens/caixa_info_music.png" class="fundo-caixa" alt="Caixa de Informações">
+                            <div class="texto-sobre-caixa">
+                                <p id="texto-mp3"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- Fim area-conteudo-popup -->
+
+            <!-- Mão Direita -->
+            <img src="src/imagens/seta_direita.jpeg" id="seta-direita" class="mao-aponta escondido" alt="Seta direita">
+        </div>
+    </div>
 
     <script src="src/js/global.js"></script>
     <script src="src/js/salaBau.js"></script>
 </body>
+
 </html>

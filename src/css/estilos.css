@@ -90,7 +90,7 @@ body.pagina-inicial {
 
 
 /* ==========================
-       3. PÁGINA PASSAGEM (PORTA)
+   3. PÁGINA PASSAGEM (PORTA)
    ========================== */
 
 .pagina-passagem {
@@ -134,4 +134,295 @@ body.pagina-inicial {
 /* Leve efeito de zoom ao passar o mouse por cima da porta */
 .pagina-passagem .porta-interativa:hover {
   transform: scale(1.02);
+}
+
+
+/* ==========================
+     4. PÁGINA SALA BAÚ
+   ========================== */
+
+body.pagina-bau {
+  background-color: #000000;
+  margin: 0;
+  overflow: hidden; /* Trava a tela para não rolar */
+  height: 100vh;
+  position: relative;
+}
+
+/* Fundo da Lanterna */
+.pagina-bau .luz-fundo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 90vh; /* Ajuste o tamanho da luz aqui */
+  z-index: 1;
+  pointer-events: none; /* Ignora cliques para não atrapalhar o baú */
+}
+
+/* Baú */
+.pagina-bau .bau-interativo {
+  position: absolute;
+  bottom: 15%; /* Distância do chão */
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(180px, 40vw, 300px);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s;
+}
+.pagina-bau .bau-interativo:hover {
+  transform: translateX(-50%) scale(1.05); /* Leve zoom ao passar o mouse */
+}
+
+.pagina-bau .bau-interativo.bau-aberto {
+  width: clamp(250px, 60vw, 390px);
+}
+
+/* Grupos de Mãos e Itens */
+.pagina-bau .grupo-elementos {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 5;
+  transition: opacity 0.8s ease-in-out;
+}
+.pagina-bau .grupo-elementos.escondido {
+  opacity: 0;
+  pointer-events: none; /* Desativa os cliques quando invisível */
+}
+
+/* === ANIMAÇÃO E POSIÇÃO DAS MÃOS === */
+.pagina-bau .mao {
+  position: absolute;
+  width: clamp(70px, 12vw, 130px);
+  /* A animação usa a variável --rot definida no HTML para cada mão */
+  animation: apontar 0.6s infinite alternate ease-in-out;
+  z-index: 15;
+}
+
+@keyframes apontar {
+  0% { transform: rotate(var(--rot)) translateY(0px); }
+  100% { transform: rotate(var(--rot)) translateY(-15px); } 
+}
+
+/* Posições das Mãos (Arco) */
+.mao-1 { bottom: 20%; left: 30%; }
+.mao-2 { bottom: 35%; left: 33%; }
+.mao-3 { bottom: 45%; left: calc(50% - 65px); } /* Centralizada no topo */
+.mao-4 { bottom: 35%; right: 35%; }
+.mao-5 { bottom: 20%; right: 30%; }
+
+
+/* === POSIÇÃO DOS ITENS REVELADOS === */
+.pagina-bau .item {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+/* Hover de zoom: Aumenta o tamanho (scale) e mantém a inclinação da variável (--rot) */
+.pagina-bau .item:not(.item-livros):hover {
+  transform: scale(1.15) rotate(var(--rot));
+}
+
+/* Hover exclusivo dos livros: Mantém centralizado, dá zoom e mantém a rotação (0) */
+.item-livros:hover {
+  transform: translateX(-50%) scale(1.15) rotate(var(--rot)); 
+}
+
+/* 1. PSP*/
+.item-psp { 
+  bottom: 45%; 
+  left: 21%; 
+  width: clamp(140px, 20vw, 220px); /* Aumentado */
+  --rot: -24deg; /* Inclinação */
+  transform: rotate(var(--rot));
+}
+
+/* 2. Câmera*/
+.item-cam { 
+  bottom: 46%; 
+  right: 23%; 
+  width: clamp(120px, 18vw, 215px); /* Aumentada */
+  --rot: -1deg;
+  transform: rotate(var(--rot));
+}
+
+/* 3. Mp3  */
+.item-mp3 { 
+  bottom: 15%; 
+  left: 22%; 
+  width: clamp(80px, 12vw, 200px);
+  --rot: -7deg;
+  transform: rotate(var(--rot));
+}
+
+/* 4. Papéis */
+.item-papeis { 
+  bottom: 15%; 
+  right: 22%; 
+  width: clamp(90px, 14vw, 150px); /* Diminuído em relação à foto 2 */
+  --rot: -20deg;
+  transform: rotate(var(--rot));
+}
+
+/* 5. Livros  */
+.item-livros { 
+  bottom: 50%; 
+  left: 50%; 
+  width: clamp(120px, 18vw, 220px); 
+  --rot: 0deg; /* Sem inclinação, retinho */
+  transform: translateX(-50%) rotate(var(--rot)); 
+}
+
+/* === POP-UP (MODAL) === */
+#overlay-popup {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Escureci um pouco o fundo para focar mais no item */
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+#overlay-popup.escondido {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#btn-fechar {
+  position: absolute;
+  top: 30px; right: 40px;
+  width: 50px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 110;
+}
+#btn-fechar:hover { transform: scale(1.1); }
+
+/* Organização Geral do Pop-up */
+.container-destaque {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+.mao-aponta {
+  width: clamp(60px, 10vw, 120px);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.mao-aponta.escondido { display: none !important; }
+.mao-aponta:hover { transform: scale(1.1); }
+
+/* ÁREA DE CONTEÚDO */
+#area-conteudo-popup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80vw;
+  max-height: 90vh;
+}
+
+.conteudo-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.conteudo-item.escondido { display: none !important; }
+
+/* 1. MODO IMAGEM SIMPLES */
+#imagem-popup-simples {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* 2. MODO PAPEL */
+#container-papel {
+  position: relative;
+  width: min(90vw, 550px);
+  height: min(90vh, 750px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagem-fundo-papel { width: 100%; height: 100%; object-fit: contain; }
+.texto-sobre-papel {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; align-items: center;
+  padding: 18% 15%; box-sizing: border-box;
+}
+#texto-papel {
+  font-family: 'courier'; font-size: clamp(14px, 1.8vw, 18px); color: #1a1a1a;
+  text-align: left; line-height: 1.6; margin: 0; width: 100%; max-height: 100%; overflow-y: auto;
+}
+
+/* 3. MODO MP3 */
+#container-mp3 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.aparelho-mp3, .caixa-info-mp3 {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.fundo-mp3, .fundo-caixa { max-height: 75vh; max-width: 40vw; object-fit: contain; }
+
+/* AJUSTE ESTAS PORCENTAGENS PARA ENCAIXAR O VÍDEO NA TELA DO SEU MP3 */
+#video-yt {
+  position: absolute;
+  top: 10%; 
+  left: 28%;
+  width: 45%;
+  height: 35%;
+  border-radius: 5px;
+}
+.texto-sobre-caixa {
+  position: absolute;
+  top: 15%; left: 18%; width: 70%; height: 70%;
+  overflow-y: auto; color: #1a1a1a; font-family: 'courier'; font-size: clamp(14px, 1.3vw, 16px);
+}
+
+/* === FORMATAÇÃO DE PARÁGRAFOS E ROLAGEM === */
+
+/* Garante espaçamento entre os parágrafos no Papel e na Caixa MP3 */
+#texto-papel p, .texto-sobre-caixa p {
+  margin: 0 0 12px 0; /* Cria um espaço limpo entre um parágrafo e outro */
+}
+
+/* Estilização elegante da Barra de Rolagem (Fica sutil e moderna) */
+#texto-papel::-webkit-scrollbar,
+.texto-sobre-caixa::-webkit-scrollbar {
+  width: 6px;
+}
+
+#texto-papel::-webkit-scrollbar-thumb,
+.texto-sobre-caixa::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+#texto-papel::-webkit-scrollbar-thumb:hover,
+.texto-sobre-caixa::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#texto-papel::-webkit-scrollbar-track,
+.texto-sobre-caixa::-webkit-scrollbar-track {
+  background: transparent;
 }
