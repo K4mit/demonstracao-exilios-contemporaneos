@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             titulo: "Gachiakuta",
             tagline: "O exílio como punição para os marginalizados.",
-            imagem: "src/imagens/personagens/gachiakuta.jpg",
+            imagem: "src/imagens/images.png",
             descricao: "Rudo vive à margem em uma cidade flutuante, onde os ricos despejam seu lixo em um abismo abaixo. Acusado injustamente de um crime, ele é condenado ao exílio nesse mesmo abismo, junto ao lixo da sociedade. A série liga diretamente pobreza, injustiça e expulsão física, mostrando o exílio como ferramenta de controle de classe."
         }
     ];
