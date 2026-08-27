@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const setaEsquerda = document.getElementById('seta-esquerda');
     const setaDireita = document.getElementById('seta-direita');
 
-    let itemAtivo = ''; // Saberemos se é 'papel', 'mp3', ou 'simples'
-    let indexAtual = 0; // Usado para página do papel ou faixa do mp3
+    let itemAtivo = ''; // Saberemos se é 'papel', 'mp3', 'filme' ou 'simples'
+    let indexAtual = 0; // Usado para página do papel, faixa do mp3 ou filme
 
     // ==========================================
     // DADOS COM SUPORTE A PARÁGRAFOS (Use tags <p>)
@@ -75,11 +75,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // ==========================================
+    // DADOS DOS FILMES — todos relacionados a diferentes formas de exílio.
+    // Pode adicionar mais itens aqui, as setas se ajustam sozinhas.
+    // ==========================================
+    const filmesArray = [
+        {
+            titulo: "Perdido em Marte",
+            tagline: "O exílio físico: sozinho, longe de qualquer civilização.",
+            imagem: "src/imagens/marte_matt.png",
+            descricao: "Um astronauta é dado como morto e abandonado em Marte após um acidente. Isolado de toda a humanidade, sem contato ou apoio imediato, ele vive o exílio em sua forma mais literal e extrema: o isolamento total imposto pelo acaso, tendo a razão e a ciência como únicas ferramentas de sobrevivência."
+        },
+        {
+            titulo: "Coringa",
+            tagline: "O exílio dentro da própria cidade.",
+            imagem: "src/imagens/coringa.png",
+            descricao: "Arthur Fleck vive em Gotham, mas é tratado como estranho nela: ridicularizado pela pobreza, pela condição mental e pela ausência de rede de apoio. Seu exílio não é geográfico, mas social — a exclusão gradual de alguém que nunca foi verdadeiramente incluído, até que a ruptura com a sociedade se torna total."
+        },
+        {
+            titulo: "O Último Azul",
+            tagline: "O exílio decretado pelo Estado.",
+            imagem: "src/imagens/ultimo_azul.png",
+            descricao: "Em um Brasil distópico, Tereza, de 77 anos, recebe uma notificação oficial: idosos devem ser enviados a uma colônia distante para abrir espaço aos mais jovens no mercado de trabalho. É o exílio institucionalizado, imposto por decreto contra quem é visto como um peso para a produtividade — e a resistência de quem se recusa a aceitar essa expulsão em silêncio."
+        },
+        {
+            titulo: "Gachiakuta",
+            tagline: "O exílio como punição para os marginalizados.",
+            imagem: "src/imagens/personagens/gachiakuta.jpg",
+            descricao: "Rudo vive à margem em uma cidade flutuante, onde os ricos despejam seu lixo em um abismo abaixo. Acusado injustamente de um crime, ele é condenado ao exílio nesse mesmo abismo, junto ao lixo da sociedade. A série liga diretamente pobreza, injustiça e expulsão física, mostrando o exílio como ferramenta de controle de classe."
+        }
+    ];
+
     // Função que reseta e esconde TODOS os conteúdos do pop-up
     function esconderTudo() {
         document.getElementById('conteudo-simples').classList.add('escondido');
         document.getElementById('conteudo-papeis').classList.add('escondido');
         document.getElementById('conteudo-mp3').classList.add('escondido');
+        document.getElementById('conteudo-filme').classList.add('escondido');
         setaEsquerda.classList.add('escondido');
         setaDireita.classList.add('escondido');
 
@@ -125,6 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarSetas(playlistMp3.length);
     }
 
+    // Renderização do filme atual
+    function renderizarFilme() {
+        const filmeAtual = filmesArray[indexAtual];
+        document.getElementById('titulo-filme').textContent = filmeAtual.titulo;
+        document.getElementById('tagline-filme').textContent = filmeAtual.tagline;
+        document.getElementById('descricao-filme').textContent = filmeAtual.descricao;
+
+        const imgPersonagem = document.getElementById('imagem-filme');
+        imgPersonagem.src = filmeAtual.imagem;
+        imgPersonagem.alt = filmeAtual.titulo;
+
+        atualizarSetas(filmesArray.length);
+    }
+
     // ==========================================
     // 3. CLIQUE NOS ITENS
     // ==========================================
@@ -144,8 +190,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('conteudo-mp3').classList.remove('escondido');
                 renderizarMp3();
 
+            } else if (evento.target.classList.contains('item-cam')) {
+                // A câmera abre a lista de filmes/séries/animes
+                itemAtivo = 'filme';
+                document.getElementById('conteudo-filme').classList.remove('escondido');
+                renderizarFilme();
+
             } else {
-                // Para PSP, Câmera e Livros (Apenas mostram a imagem)
+                // Para PSP e Livros (Apenas mostram a imagem)
                 itemAtivo = 'simples';
                 document.getElementById('conteudo-simples').classList.remove('escondido');
                 document.getElementById('imagem-popup-simples').src = evento.target.src;
@@ -166,6 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'mp3' && indexAtual < playlistMp3.length - 1) {
                 indexAtual++;
                 renderizarMp3();
+            } else if (itemAtivo === 'filme' && indexAtual < filmesArray.length - 1) {
+                indexAtual++;
+                renderizarFilme();
             }
         });
     }
@@ -178,6 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'mp3' && indexAtual > 0) {
                 indexAtual--;
                 renderizarMp3();
+            } else if (itemAtivo === 'filme' && indexAtual > 0) {
+                indexAtual--;
+                renderizarFilme();
             }
         });
     }

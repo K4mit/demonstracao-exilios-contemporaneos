@@ -20,7 +20,7 @@
 
     <div class="cena-bau">
 
-        <!-- ESTADO 1: As 5 mãos (Visíveis inicialmente) -->
+        <!-- ESTADO 1: As mãos (Visíveis inicialmente) -->
         <div id="grupo-maos" class="grupo-elementos">
             <img src="src/imagens/maozinha_apontando.png" class="mao mao-1" style="--rot: 105deg;" alt="">
             <img src="src/imagens/maozinha_apontando.png" class="mao mao-2" style="--rot: 145deg;" alt="">
@@ -29,7 +29,7 @@
             <img src="src/imagens/maozinha_apontando.png" class="mao mao-5" style="--rot: 255deg;" alt="">
         </div>
 
-        <!-- ESTADO 2: Os 5 itens (Escondidos inicialmente) -->
+        <!-- ESTADO 2: Os itens (Escondidos inicialmente) -->
         <div id="grupo-itens" class="grupo-elementos escondido">
             <img src="src/imagens/icone_console.jpeg" class="item item-psp" alt="PSP">
             <img src="src/imagens/icone_livros.jpeg" class="item item-livros" alt="Livros">
@@ -63,7 +63,7 @@
 
                 <!-- 2. MODO PAPEL (Com texto rolável) -->
                 <div id="conteudo-papeis" class="conteudo-item escondido">
-                    <div id="container-papel">
+                    <div id="">
                         <img src="src/imagens/visu_icone_folha.jpeg" class="imagem-fundo-papel" alt="Fundo de papel">
                         <div class="texto-sobre-papel">
                             <p id="texto-papel"></p>
@@ -85,6 +85,23 @@
                             <img src="src/imagens/caixa_info_music.png" class="fundo-caixa" alt="Caixa de Informações">
                             <div class="texto-sobre-caixa">
                                 <p id="texto-mp3"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. MODO FILME (Tela de projetor com título, tagline e descrição) -->
+                <div id="conteudo-filme" class="conteudo-item escondido">
+                    <div id="container-filme">
+                        <!-- Troque pelo nome real do seu arquivo de fundo do projetor -->
+                        <img src="src/imagens/caixa_info_entretenimento.png" class="imagem-fundo-filme" alt="Tela do projetor">
+                        <div class="texto-sobre-filme">
+                            <h2 id="titulo-filme"></h2>
+                            <p id="tagline-filme"></p>
+                            <div id="corpo-filme">
+                                <!-- Imagem do personagem: flutua ao lado do texto -->
+                                <img id="imagem-filme" src="" alt="">
+                                <p id="descricao-filme"></p>
                             </div>
                         </div>
                     </div>

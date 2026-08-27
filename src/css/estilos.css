@@ -208,7 +208,7 @@ body.pagina-bau {
 /* Posições das Mãos (Arco) */
 .mao-1 { bottom: 20%; left: 30%; }
 .mao-2 { bottom: 35%; left: 33%; }
-.mao-3 { bottom: 45%; left: calc(50% - 65px); } /* Centralizada no topo */
+.mao-3 { bottom: 45%; left: calc(50% - 65px); } /* Centralizada no topo, lado esquerdo */
 .mao-4 { bottom: 35%; right: 35%; }
 .mao-5 { bottom: 20%; right: 30%; }
 
@@ -398,6 +398,82 @@ body.pagina-bau {
   overflow-y: auto; color: #1a1a1a; font-family: 'courier'; font-size: clamp(14px, 1.3vw, 16px);
 }
 
+/* 4. MODO FILME (Tela de projetor) */
+#container-filme {
+  position: relative;
+  width: min(90vw, 600px);
+  height: min(90vh, 500px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagem-fundo-filme {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.texto-sobre-filme {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* AJUSTE ESTAS PORCENTAGENS para encaixar o texto dentro da telinha do seu projetor,
+     do mesmo jeito que você ajustou no papel */
+  padding: 20% 14% 17%;
+  box-sizing: border-box;
+  color: #1a1a1a;
+  font-family: 'courier';
+  float: right;
+}
+#titulo-filme {
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  margin-bottom: 8px;
+  font-family: 'im_fell', 'courier';
+  letter-spacing: 1px;
+}
+#tagline-filme {
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  font-style: italic;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.3);
+  width: 100%;
+}
+
+/* Corpo rolável: só a imagem + descrição rolam, título e tagline ficam fixos */
+#corpo-filme {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* Foto do personagem "colada" na tela, com o texto contornando ao redor */
+#imagem-filme {
+  float: right;
+  width: clamp(70px, 16vw, 130px);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  margin: 0 0 12px 16px;
+  border: 6px solid #f4f0e4;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transform: rotate(3deg);
+}
+
+#descricao-filme {
+  font-size: clamp(13px, 1.6vw, 16px);
+  line-height: 1.6;
+  text-align: left;
+  hyphens: auto;
+  margin-left: 38px;
+  display: block !important;
+  width: auto !important;
+}
+
 /* === FORMATAÇÃO DE PARÁGRAFOS E ROLAGEM === */
 
 /* Garante espaçamento entre os parágrafos no Papel e na Caixa MP3 */
@@ -405,24 +481,28 @@ body.pagina-bau {
   margin: 0 0 12px 0; /* Cria um espaço limpo entre um parágrafo e outro */
 }
 
-/* Estilização elegante da Barra de Rolagem (Fica sutil e moderna) */
+/* Estilização da Barra de Rolagem */
 #texto-papel::-webkit-scrollbar,
-.texto-sobre-caixa::-webkit-scrollbar {
+.texto-sobre-caixa::-webkit-scrollbar,
+#corpo-filme::-webkit-scrollbar {
   width: 6px;
 }
 
 #texto-papel::-webkit-scrollbar-thumb,
-.texto-sobre-caixa::-webkit-scrollbar-thumb {
+.texto-sobre-caixa::-webkit-scrollbar-thumb,
+#corpo-filme::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
 
 #texto-papel::-webkit-scrollbar-thumb:hover,
-.texto-sobre-caixa::-webkit-scrollbar-thumb:hover {
+.texto-sobre-caixa::-webkit-scrollbar-thumb:hover,
+#corpo-filme::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 #texto-papel::-webkit-scrollbar-track,
-.texto-sobre-caixa::-webkit-scrollbar-track {
+.texto-sobre-caixa::-webkit-scrollbar-track,
+#corpo-filme::-webkit-scrollbar-track {
   background: transparent;
 }
