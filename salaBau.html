@@ -56,12 +56,13 @@
             <!-- ÁREA ONDE OS CONTEÚDOS APARECEM -->
             <div id="area-conteudo-popup">
 
-                <!-- 1. MODO IMAGEM SIMPLES (PSP, Câmera, Livros) -->
+                <!-- 1. MODO IMAGEM SIMPLES (Livros) -->
                 <div id="conteudo-simples" class="conteudo-item escondido">
                     <img id="imagem-popup-simples" src="" alt="Item em destaque">
                 </div>
 
                 <!-- 2. MODO PAPEL (Com texto rolável) -->
+                 <!-- ID propositalmente vazio para corrigir um bug de forma preguiçosa (ignore) -->
                 <div id="conteudo-papeis" class="conteudo-item escondido">
                     <div id="">
                         <img src="src/imagens/visu_icone_folha.jpeg" class="imagem-fundo-papel" alt="Fundo de papel">
@@ -93,7 +94,6 @@
                 <!-- 4. MODO FILME (Tela de projetor com título, tagline e descrição) -->
                 <div id="conteudo-filme" class="conteudo-item escondido">
                     <div id="container-filme">
-                        <!-- Troque pelo nome real do seu arquivo de fundo do projetor -->
                         <img src="src/imagens/caixa_info_entretenimento.png" class="imagem-fundo-filme" alt="Tela do projetor">
                         <div class="texto-sobre-filme">
                             <h2 id="titulo-filme"></h2>
@@ -102,6 +102,26 @@
                                 <!-- Imagem do personagem: flutua ao lado do texto -->
                                 <img id="imagem-filme" src="" alt="">
                                 <p id="descricao-filme"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. MODO JOGO (PSP com capa do jogo na tela + caixa de informações embaixo) -->
+                <div id="conteudo-jogo" class="conteudo-item escondido">
+                    <div id="container-jogo">
+                        <div class="aparelho-psp">
+                            <!-- Troque pelo nome real do seu arquivo de fundo do PSP -->
+                            <img src="src/imagens/visu_icone_console.jpeg" class="fundo-psp" alt="PSP">
+                            <img id="capa-jogo" src="" class="capa-jogo" alt="Capa do jogo">
+                        </div>
+                        <div class="caixa-info-jogo">
+                            <!-- Troque pelo nome real do seu arquivo de fundo da caixa -->
+                            <img src="src/imagens/caixa_info_jogo.png" class="fundo-caixa-jogo" alt="Caixa de informações">
+                            <div class="texto-sobre-caixa-jogo">
+                                <h2 id="titulo-jogo"></h2>
+                                <p id="tagline-jogo"></p>
+                                <p id="descricao-jogo"></p>
                             </div>
                         </div>
                     </div>

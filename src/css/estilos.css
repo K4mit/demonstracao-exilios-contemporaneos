@@ -1,34 +1,36 @@
 /* ==========================================
-   1. REGRAS GLOBAIS (Válidas para TODAS as páginas)
+   1. REGRAS GLOBAIS
    ========================================== */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
 
 /* ==========================
-       2. PÁGINA INICIAL
-   ========================== */
+   2. PÁGINA INICIAL
+   ========================================== */
 
-/* Limita a trava de rolagem e tela cheia só para a página inicial */
 body.pagina-inicial {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
   position: relative;
+  background-color: #000000;
 }
 
-/* Força o link da página inicial a ocupar 100% da tela */
 .pagina-inicial .link-fundo {
   display: block;
   width: 100vw;
   height: 100vh;
 }
 
-/* Imagem de fundo preenchendo 100% sem distorcer */
 .pagina-inicial .full-screen-img {
   width: 100vw;
   height: 100vh;
@@ -36,11 +38,10 @@ body.pagina-inicial {
   display: block;
 }
 
-/* Imagem do texto centralizado por cima do personagem */
 .pagina-inicial .letras_diferentes {
   position: absolute;
   left: 50%;
-  top: 35%; /* Ajuste a altura conforme necessário */
+  top: 35%;
   transform: translate(-50%, -50%);
   width: clamp(300px, 100vw, 1000px);
   height: auto;
@@ -48,12 +49,11 @@ body.pagina-inicial {
   z-index: 2;
 }
 
-/* Efeito de digitação fixo no canto inferior */
 .texto-canto {
   position: fixed;
   bottom: clamp(10px, 3vw, 20px);
   right: clamp(10px, 3vw, 20px);
-  font-family: 'elite';
+  font-family: 'elite', monospace;
   font-size: clamp(2.5rem, 10vw, 4rem);
   color: #ffffff;
   border-right: 2px solid #ffffff;
@@ -68,21 +68,16 @@ body.pagina-inicial {
   50% { border-color: #ffffff; }
 }
 
-/* Camada preta invisível por cima de tudo (Troca entre a primeira pág pra segunda)*/
 .overlay-transicao {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background-color: #000000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease-in-out; /* Duração da piscada */
+  transition: opacity 0.8s ease-in-out;
   z-index: 99999;
 }
 
-/* Classe ativada no clique para escurecer a tela */
 .overlay-transicao.ativa {
   opacity: 1;
   pointer-events: auto;
@@ -91,39 +86,30 @@ body.pagina-inicial {
 
 /* ==========================
    3. PÁGINA PASSAGEM (PORTA)
-   ========================== */
+   ========================================== */
 
 .pagina-passagem {
-  margin: 0;
-  padding: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
-  display: flex;/* Flexbox para deixar a porta exatamente no meio */
+  display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background-color: #d0cbb5;
 }
 
-/* Posiciona o texto no canto superior esquerdo */
 .pagina-passagem .texto-superior {
   position: absolute;
   top: 8%;
   left: 5%;
-  margin: 0;
-  
-  /* Mantém a estética da máquina de escrever */
-  font-family: 'im_fell'; /* Ou a fonte customizada que estiver usando */
+  font-family: 'im_fell', serif;
   font-size: clamp(1.2rem, 4vw, 3rem);
-  color: #1a1a1a; /* Cor escura para contrastar com o fundo */
+  color: #1a1a1a;
   border-right: 2px solid #1a1a1a;
   white-space: nowrap;
-  
   animation: piscar 0.75s step-end infinite;
 }
 
-/* Tamanho responsivo da porta */
 .pagina-passagem .porta-interativa {
   height: 81vh;
   width: auto;
@@ -131,39 +117,33 @@ body.pagina-inicial {
   transition: transform 0.2s ease-in-out;
 }
 
-/* Leve efeito de zoom ao passar o mouse por cima da porta */
 .pagina-passagem .porta-interativa:hover {
   transform: scale(1.02);
 }
 
 
 /* ==========================
-     4. PÁGINA SALA BAÚ
-   ========================== */
+   4. PÁGINA SALA BAÚ
+   ========================================== */
 
 body.pagina-bau {
   background-color: #000000;
-  margin: 0;
-  overflow: hidden; /* Trava a tela para não rolar */
-  height: 100vh;
   position: relative;
 }
 
-/* Fundo da Lanterna */
 .pagina-bau .luz-fundo {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: 90vh; /* Ajuste o tamanho da luz aqui */
+  height: 90vh;
   z-index: 1;
-  pointer-events: none; /* Ignora cliques para não atrapalhar o baú */
+  pointer-events: none;
 }
 
-/* Baú */
 .pagina-bau .bau-interativo {
   position: absolute;
-  bottom: 15%; /* Distância do chão */
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: clamp(180px, 40vw, 300px);
@@ -171,31 +151,30 @@ body.pagina-bau {
   z-index: 10;
   transition: transform 0.2s;
 }
+
 .pagina-bau .bau-interativo:hover {
-  transform: translateX(-50%) scale(1.05); /* Leve zoom ao passar o mouse */
+  transform: translateX(-50%) scale(1.05);
 }
 
 .pagina-bau .bau-interativo.bau-aberto {
   width: clamp(250px, 60vw, 390px);
 }
 
-/* Grupos de Mãos e Itens */
 .pagina-bau .grupo-elementos {
   position: absolute;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  inset: 0;
   z-index: 5;
   transition: opacity 0.8s ease-in-out;
 }
+
 .pagina-bau .grupo-elementos.escondido {
   opacity: 0;
-  pointer-events: none; /* Desativa os cliques quando invisível */
+  pointer-events: none;
 }
 
-/* === ANIMAÇÃO E POSIÇÃO DAS MÃOS === */
 .pagina-bau .mao {
   position: absolute;
   width: clamp(70px, 12vw, 130px);
-  /* A animação usa a variável --rot definida no HTML para cada mão */
   animation: apontar 0.6s infinite alternate ease-in-out;
   z-index: 15;
 }
@@ -205,83 +184,125 @@ body.pagina-bau {
   100% { transform: rotate(var(--rot)) translateY(-15px); } 
 }
 
-/* Posições das Mãos (Arco) */
 .mao-1 { bottom: 20%; left: 30%; }
 .mao-2 { bottom: 35%; left: 33%; }
-.mao-3 { bottom: 45%; left: calc(50% - 65px); } /* Centralizada no topo, lado esquerdo */
+.mao-3 { bottom: 45%; left: calc(50% - 65px); }
 .mao-4 { bottom: 35%; right: 35%; }
 .mao-5 { bottom: 20%; right: 30%; }
 
+/* ==========================
+   ANIMAÇÃO DO BAÚ E SAÍDA DOS ITENS
+   ========================== */
 
-/* === POSIÇÃO DOS ITENS REVELADOS === */
-.pagina-bau .item {
+/* Container cobre a tela inteira para servir de palco absoluto */
+.pagina-bau .grupo-elementos {
   position: absolute;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.pagina-bau .grupo-elementos:not(.escondido) {
   pointer-events: auto;
+}
+
+.pagina-bau .grupo-elementos.escondido {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Estado inicial: todos concentrados no centro exato da base do baú */
+#grupo-itens .item {
+  position: absolute;
+  bottom: 22%;
+  left: 47%;
+  transform: translate(-50%, 50%) scale(0.1);
+  opacity: 0;
+  /* Transição lenta e suave de 2.2 segundos */
+  transition: all 2.2s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 20;
 }
 
-/* Hover de zoom: Aumenta o tamanho (scale) e mantém a inclinação da variável (--rot) */
+/* Estado final: Circunferência perfeita com raio exato de 25% a partir do centro do baú */
+
+/* 1. Livro (Topo) */
+#grupo-itens.animar-itens .item-livros {
+  transform: translateX(0%) translate(0vw, -18vw) scale(1) rotate(var(--rot));
+  opacity: 1;
+}
+
+/* 2. PSP (Superior Esquerdo) */
+#grupo-itens.animar-itens .item-psp {
+  transform: translate(-23vw, -15vw) scale(1) rotate(var(--rot));
+  opacity: 1;
+}
+
+/* 3. Câmera (Superior Direito) */
+#grupo-itens.animar-itens .item-cam {
+  transform: translate(23vw, -15vw) scale(1) rotate(var(--rot));
+  opacity: 1;
+}
+
+/* 4. MP3 (Inferior Esquerdo) */
+#grupo-itens.animar-itens .item-mp3 {
+  transform: translate(-20vw, 5vw) scale(1) rotate(var(--rot));
+  opacity: 1;
+}
+
+/* 5. Papéis (Inferior Direito) */
+#grupo-itens.animar-itens .item-papeis {
+  transform: translate(20vw, 5vw) scale(1) rotate(var(--rot));
+  opacity: 1;
+}
+
+/* Ordem de aparição exata: MP3 -> PSP -> Livro -> Câmera -> Notas */
+#grupo-itens.animar-itens .item-mp3    { transition-delay: 1s; }
+#grupo-itens.animar-itens .item-psp    { transition-delay: 2s; }
+#grupo-itens.animar-itens .item-livros { transition-delay: 3s; }
+#grupo-itens.animar-itens .item-cam    { transition-delay: 4s; }
+#grupo-itens.animar-itens .item-papeis { transition-delay: 5s; }
+
+/* Hover dos itens */
 .pagina-bau .item:not(.item-livros):hover {
   transform: scale(1.15) rotate(var(--rot));
 }
 
-/* Hover exclusivo dos livros: Mantém centralizado, dá zoom e mantém a rotação (0) */
 .item-livros:hover {
   transform: translateX(-50%) scale(1.15) rotate(var(--rot)); 
 }
 
-/* 1. PSP*/
-.item-psp { 
-  bottom: 45%; 
-  left: 21%; 
-  width: clamp(140px, 20vw, 220px); /* Aumentado */
-  --rot: -24deg; /* Inclinação */
-  transform: rotate(var(--rot));
+/* Tamanhos proporcionais dos itens ao redor do baú */
+.item-psp    { width: clamp(100px, 14vw, 150px); --rot: -20deg; }
+.item-livros { width: clamp(80px, 11vw, 125px);  --rot: 0deg;   }
+.item-cam    { width: clamp(90px, 12vw, 135px);  --rot: -5deg;  }
+.item-mp3    { width: clamp(65px, 9vw, 110px);   --rot: -10deg; }
+.item-papeis { width: clamp(70px, 10vw, 115px);  --rot: -15deg; }
+
+/* Hover dos itens */
+.pagina-bau .item:not(.item-livros):hover {
+  transform: scale(1.15) rotate(var(--rot));
 }
 
-/* 2. Câmera*/
-.item-cam { 
-  bottom: 46%; 
-  right: 23%; 
-  width: clamp(120px, 18vw, 215px); /* Aumentada */
-  --rot: -1deg;
-  transform: rotate(var(--rot));
+.item-livros:hover {
+  transform: translateX(-50%) scale(1.15) rotate(var(--rot)); 
 }
 
-/* 3. Mp3  */
-.item-mp3 { 
-  bottom: 15%; 
-  left: 22%; 
-  width: clamp(80px, 12vw, 200px);
-  --rot: -7deg;
-  transform: rotate(var(--rot));
-}
+/* Tamanhos proporcionais dos itens ao redor do baú */
+.item-psp    { width: clamp(100px, 14vw, 150px); --rot: -20deg; }
+.item-livros { width: clamp(80px, 11vw, 125px);  --rot: 0deg;   }
+.item-cam    { width: clamp(90px, 12vw, 135px);  --rot: -5deg;  }
+.item-mp3    { width: clamp(65px, 9vw, 110px);   --rot: -10deg; }
+.item-papeis { width: clamp(70px, 10vw, 115px);  --rot: -15deg; }
 
-/* 4. Papéis */
-.item-papeis { 
-  bottom: 15%; 
-  right: 22%; 
-  width: clamp(90px, 14vw, 150px); /* Diminuído em relação à foto 2 */
-  --rot: -20deg;
-  transform: rotate(var(--rot));
-}
+/* ==========================
+   5. POP-UP (MODAL) E COMPONENTES
+   ========================================== */
 
-/* 5. Livros  */
-.item-livros { 
-  bottom: 50%; 
-  left: 50%; 
-  width: clamp(120px, 18vw, 220px); 
-  --rot: 0deg; /* Sem inclinação, retinho */
-  transform: translateX(-50%) rotate(var(--rot)); 
-}
-
-/* === POP-UP (MODAL) === */
 #overlay-popup {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85); /* Escureci um pouco o fundo para focar mais no item */
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -289,6 +310,7 @@ body.pagina-bau {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
+
 #overlay-popup.escondido {
   opacity: 0;
   pointer-events: none;
@@ -296,34 +318,42 @@ body.pagina-bau {
 
 #btn-fechar {
   position: absolute;
-  top: 30px; right: 40px;
+  top: 30px; 
+  right: 40px;
   width: 50px;
   cursor: pointer;
   transition: transform 0.2s;
   z-index: 110;
 }
-#btn-fechar:hover { transform: scale(1.1); }
 
-/* Organização Geral do Pop-up */
+#btn-fechar:hover { 
+  transform: scale(1.1); 
+}
+
 .container-destaque {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 10px;
   width: 100%;
   height: 100%;
 }
 
 .mao-aponta {
-  width: clamp(60px, 10vw, 120px);
+  width: clamp(45px, 7vw, 90px);
   flex-shrink: 0;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.mao-aponta.escondido { display: none !important; }
-.mao-aponta:hover { transform: scale(1.1); }
 
-/* ÁREA DE CONTEÚDO */
+.mao-aponta.escondido { 
+  display: none !important; 
+}
+
+.mao-aponta:hover { 
+  transform: scale(1.1); 
+}
+
 #area-conteudo-popup {
   position: relative;
   display: flex;
@@ -340,16 +370,19 @@ body.pagina-bau {
   width: 100%;
   height: 100%;
 }
-.conteudo-item.escondido { display: none !important; }
 
-/* 1. MODO IMAGEM SIMPLES */
+.conteudo-item.escondido { 
+  display: none !important; 
+}
+
+/* Modo Imagem Simples */
 #imagem-popup-simples {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
 }
 
-/* 2. MODO PAPEL */
+/* Modo Papel */
 #container-papel {
   position: relative;
   width: min(90vw, 550px);
@@ -358,18 +391,34 @@ body.pagina-bau {
   justify-content: center;
   align-items: center;
 }
-.imagem-fundo-papel { width: 100%; height: 100%; object-fit: contain; }
-.texto-sobre-papel {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  display: flex; align-items: center;
-  padding: 18% 15%; box-sizing: border-box;
-}
-#texto-papel {
-  font-family: 'courier'; font-size: clamp(14px, 1.8vw, 18px); color: #1a1a1a;
-  text-align: left; line-height: 1.6; margin: 0; width: 100%; max-height: 100%; overflow-y: auto;
+
+.imagem-fundo-papel { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
 }
 
-/* 3. MODO MP3 */
+.texto-sobre-papel {
+  position: absolute; 
+  inset: 0;
+  display: flex; 
+  align-items: center;
+  padding: 18% 15%; 
+}
+
+#texto-papel {
+  font-family: 'courier', monospace; 
+  font-size: clamp(14px, 1.8vw, 18px); 
+  color: #1a1a1a;
+  text-align: left; 
+  line-height: 1.6; 
+  margin: 0; 
+  width: 100%; 
+  max-height: 100%; 
+  overflow-y: auto;
+}
+
+/* Modo MP3 */
 #container-mp3 {
   display: flex;
   gap: 20px;
@@ -378,12 +427,20 @@ body.pagina-bau {
   width: 100%;
   height: 100%;
 }
-.aparelho-mp3, .caixa-info-mp3 {
-  position: relative; display: flex; align-items: center; justify-content: center;
-}
-.fundo-mp3, .fundo-caixa { max-height: 75vh; max-width: 40vw; object-fit: contain; }
 
-/* AJUSTE ESTAS PORCENTAGENS PARA ENCAIXAR O VÍDEO NA TELA DO SEU MP3 */
+.aparelho-mp3, .caixa-info-mp3 {
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.fundo-mp3, .fundo-caixa { 
+  max-height: 75vh; 
+  max-width: 40vw; 
+  object-fit: contain; 
+}
+
 #video-yt {
   position: absolute;
   top: 10%; 
@@ -392,47 +449,54 @@ body.pagina-bau {
   height: 35%;
   border-radius: 5px;
 }
+
 .texto-sobre-caixa {
   position: absolute;
-  top: 15%; left: 18%; width: 70%; height: 70%;
-  overflow-y: auto; color: #1a1a1a; font-family: 'courier'; font-size: clamp(14px, 1.3vw, 16px);
+  top: 15%; 
+  left: 18%; 
+  width: 70%; 
+  height: 70%;
+  overflow-y: auto; 
+  color: #1a1a1a; 
+  font-family: 'courier', monospace; 
+  font-size: clamp(14px, 1.3vw, 16px);
 }
 
-/* 4. MODO FILME (Tela de projetor) */
+/* Modo Filme */
 #container-filme {
   position: relative;
-  width: min(90vw, 600px);
-  height: min(90vh, 500px);
+  width: min(90vw, 650px);
+  height: min(90vh, 550px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .imagem-fundo-filme {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
 .texto-sobre-filme {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* AJUSTE ESTAS PORCENTAGENS para encaixar o texto dentro da telinha do seu projetor,
-     do mesmo jeito que você ajustou no papel */
-  padding: 20% 14% 17%;
-  box-sizing: border-box;
+  padding: 18% 20% 16% 15%; 
   color: #1a1a1a;
-  font-family: 'courier';
-  float: right;
+  font-family: 'courier', monospace;
 }
+
 #titulo-filme {
   font-size: clamp(1.3rem, 3vw, 2.1rem);
   margin-bottom: 8px;
-  font-family: 'im_fell', 'courier';
+  font-family: 'im_fell', 'courier', serif;
   letter-spacing: 1px;
 }
+
 #tagline-filme {
   font-size: clamp(0.9rem, 1.6vw, 1.1rem);
   font-style: italic;
@@ -442,7 +506,6 @@ body.pagina-bau {
   width: 100%;
 }
 
-/* Corpo rolável: só a imagem + descrição rolam, título e tagline ficam fixos */
 #corpo-filme {
   width: 100%;
   flex: 1;
@@ -451,7 +514,6 @@ body.pagina-bau {
   text-align: left;
 }
 
-/* Foto do personagem "colada" na tela, com o texto contornando ao redor */
 #imagem-filme {
   float: right;
   width: clamp(70px, 16vw, 130px);
@@ -474,22 +536,118 @@ body.pagina-bau {
   width: auto !important;
 }
 
-/* === FORMATAÇÃO DE PARÁGRAFOS E ROLAGEM === */
+/* ==========================
+   MODO JOGO (PSP) E NAVEGAÇÃO
+   ========================== */
 
-/* Garante espaçamento entre os parágrafos no Papel e na Caixa MP3 */
-#texto-papel p, .texto-sobre-caixa p {
-  margin: 0 0 12px 0; /* Cria um espaço limpo entre um parágrafo e outro */
+#container-jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -20px;
+  max-height: 95vh;
+  max-width: 95vw;
 }
 
-/* Estilização da Barra de Rolagem */
+.aparelho-psp, .caixa-info-jogo {
+  position: relative;
+}
+
+.aparelho-psp {
+  position: relative;
+  width: min(90vw, 650px); 
+}
+
+.fundo-psp {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.capa-jogo {
+  position: absolute;
+  top: 31.2%;
+  left: 27%;
+  width: 46.5%;
+  height: 33.3%;
+  object-fit: cover; 
+  object-position: center; 
+  border-radius: 2px;
+  z-index: 5;
+}
+
+.caixa-info-jogo {
+  position: relative;
+  width: min(90vw, 650px);
+  margin: 0 auto;
+}
+
+.fundo-caixa-jogo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.texto-sobre-caixa-jogo {
+  position: absolute;
+  top: 24%;
+  left: 18%;
+  width: 64%;
+  height: 48%;
+  box-sizing: border-box;
+  padding: 0px 5px; 
+  overflow-y: auto; 
+  color: #1a1a1a;
+  font-family: 'courier', monospace;
+  text-align: left;
+}
+
+/* ==========================
+   TIPOGRAFIA DENTRO DA CAIXA
+   ========================== */
+
+#titulo-jogo {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin: 0 0 6px 0;
+  font-family: 'im_fell', 'courier', serif;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 4px;
+}
+
+#tagline-jogo {
+  font-style: italic;
+  margin: 0 0 8px 0;
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+  color: #333;
+}
+
+#descricao-jogo {
+  font-size: clamp(12px, 1.4vw, 14px);
+  line-height: 1.4;
+  margin: 0;
+}
+
+
+/* ==========================
+   6. TIPOGRAFIA E SCROLLBARS
+   ========================================== */
+
+#texto-papel p, 
+.texto-sobre-caixa p {
+  margin: 0 0 12px 0;
+}
+
 #texto-papel::-webkit-scrollbar,
 .texto-sobre-caixa::-webkit-scrollbar,
+.texto-sobre-caixa-jogo::-webkit-scrollbar,
 #corpo-filme::-webkit-scrollbar {
   width: 6px;
 }
 
 #texto-papel::-webkit-scrollbar-thumb,
 .texto-sobre-caixa::-webkit-scrollbar-thumb,
+.texto-sobre-caixa-jogo::-webkit-scrollbar-thumb,
 #corpo-filme::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
@@ -497,12 +655,19 @@ body.pagina-bau {
 
 #texto-papel::-webkit-scrollbar-thumb:hover,
 .texto-sobre-caixa::-webkit-scrollbar-thumb:hover,
+.texto-sobre-caixa-jogo::-webkit-scrollbar-thumb:hover,
 #corpo-filme::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 #texto-papel::-webkit-scrollbar-track,
 .texto-sobre-caixa::-webkit-scrollbar-track,
+.texto-sobre-caixa-jogo::-webkit-scrollbar-track,
 #corpo-filme::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Utilitário essencial para o JS */
+.escondido {
+  display: none !important;
 }

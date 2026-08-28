@@ -15,7 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 bau.classList.add('bau-aberto');
                 bau.src = 'src/imagens/bau_aberto.png';
                 document.getElementById('grupo-maos').classList.add('escondido');
-                document.getElementById('grupo-itens').classList.remove('escondido');
+                
+                const grupoItens = document.getElementById('grupo-itens');
+                grupoItens.classList.remove('escondido');
+                
+                // Dispara a animação dos itens saindo de dentro do baú
+                setTimeout(() => {
+                    grupoItens.classList.add('animar-itens');
+                }, 50);
+
                 bauAberto = true;
             }
         });
@@ -29,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const setaEsquerda = document.getElementById('seta-esquerda');
     const setaDireita = document.getElementById('seta-direita');
 
-    let itemAtivo = ''; // Saberemos se é 'papel', 'mp3', 'filme' ou 'simples'
-    let indexAtual = 0; // Usado para página do papel, faixa do mp3 ou filme
+    let itemAtivo = ''; // Saberemos se é 'papel', 'mp3', 'filme', 'jogo' ou 'simples'
+    let indexAtual = 0; // Usado para página do papel, faixa do mp3, filme ou jogo
 
     // ==========================================
     // DADOS COM SUPORTE A PARÁGRAFOS (Use tags <p>)
@@ -60,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>O “cartão postal” simboliza a cidade apresentada como bela e desejável, ao passo que as favelas são deixadas de fora dessa representação. Isso se aproxima do exílio por injustiça, pois não se trata apenas de alguém optar por viver isolado: a pessoa é marginalizada devido a desigualdades sociais, racismo e violência.</p>
             <p>A música reforça essa divisão ao afirmar: <br>“Favelas cariocas são um quarto de despejo”</p>
             <p>Desse modo, o “exílio” pode ser interpretado como a expulsão simbólica da população pobre e negra do espaço urbano desvalorizado. O indivíduo permanece fisicamente na cidade, mas é tratado como se não pertencesse a ela — uma forma de exílio em sua própria terra.</p>
-          `
+            `
         },
         {
             url: "https://youtu.be/UtA8J7B22rU?si=ZI-0f6kDpBAvFIU_",
@@ -71,13 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>A imagem mais poderosa para relacionar com o exílio é: <br>“Sou como rês desgarrada”</p>
             <p>A “rês desgarrada” é o animal que se afastou do seu rebanho. Isso cria a imagem de alguém arrancado ou separado de seu local de origem, que passa a vaguear sem encontrar um lugar.</p>
             <p>Neste caso, o exílio não é uma exclusão explícita. É um exílio causado por circunstâncias sociais e econômicas: o indivíduo é forçado a deixar seu espaço de origem e, ao chegar à cidade, continua a não se sentir completamente parte dela.</p>
-          `
+            `
         }
     ];
 
     // ==========================================
     // DADOS DOS FILMES — todos relacionados a diferentes formas de exílio.
-    // Pode adicionar mais itens aqui, as setas se ajustam sozinhas.
     // ==========================================
     const filmesArray = [
         {
@@ -101,8 +108,38 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             titulo: "Gachiakuta",
             tagline: "O exílio como punição para os marginalizados.",
-            imagem: "src/imagens/images.png",
+            imagem: "src/imagens/gachiakuta.png",
             descricao: "Rudo vive à margem em uma cidade flutuante, onde os ricos despejam seu lixo em um abismo abaixo. Acusado injustamente de um crime, ele é condenado ao exílio nesse mesmo abismo, junto ao lixo da sociedade. A série liga diretamente pobreza, injustiça e expulsão física, mostrando o exílio como ferramenta de controle de classe."
+        }
+    ];
+
+    // ==========================================
+    // DADOS DOS JOGOS — todos relacionados a diferentes formas de exílio.
+    // ==========================================
+    const jogosArray = [
+        {
+            titulo: "Exílio de Si",
+            tagline: "O exílio como fuga: atravessar a fronteira para sobreviver.",
+            capa: "src/imagens/exilioSi.png",
+            descricao: "O exílio assume uma dimensão psicológica e principalmente identitária. O jogo explora o afastamento do indivíduo de si mesmo, colocando o foco em conflitos internos, memórias e questões relacionadas a identidade pessoal. O jogo transforma esse distanciamento em uma jornada introspectiva, na qual o personagem se encontra isolado não necessariamente de um lugar ou de outras pessoas, mas daquilo que ele próprio é, tornando o “exílio de si” uma metáfora para a perda e a reconstrução da própria identidade, cultura e dignidade."
+        },
+        {
+            titulo: "The Last of Us",
+            tagline: "O exílio coletivo: zonas de quarentena e cidades em ruínas.",
+            capa: "src/imagens/tlou.png",
+            descricao: "Após o colapso da sociedade, sobreviventes são confinados em zonas de quarentena isoladas do resto do país. Joel e Ellie atravessam esse território fragmentado, onde comunidades inteiras vivem exiladas de qualquer vida anterior à pandemia, sobrevivendo cortadas do mundo que conheciam."
+        },
+        {
+            titulo: "Silent Hill 2",
+            tagline: "O exílio psicológico: preso dentro da própria culpa.",
+            capa: "src/imagens/silentHill2.png",
+            descricao: "O protagonista se vê preso numa versão distorcida da cidade, moldada por seus próprios traumas e culpas. Aqui o exílio não é geográfico nem social, mas interno: um isolamento mental do qual não há saída fácil, já que a prisão é a própria mente do personagem."
+        },
+        {
+            titulo: "Death Stranding",
+            tagline: "O exílio como consequência de uma catástrofe.",
+            capa: "src/imagens/deathStranding.png",
+            descricao: "Em um mundo fragmentado por uma catástrofe, sobreviventes vivem isolados em abrigos selados, incapazes de se conectar fisicamente uns aos outros. Sam Porter atravessa essa América em ruínas tentando reconectar pessoas exiladas em suas próprias bolhas de isolamento forçado."
         }
     ];
 
@@ -112,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('conteudo-papeis').classList.add('escondido');
         document.getElementById('conteudo-mp3').classList.add('escondido');
         document.getElementById('conteudo-filme').classList.add('escondido');
+        document.getElementById('conteudo-jogo').classList.add('escondido');
         setaEsquerda.classList.add('escondido');
         setaDireita.classList.add('escondido');
 
@@ -147,17 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return id;
     }
 
-    // Função de renderização atualizada
     function renderizarMp3() {
         const urlAtual = playlistMp3[indexAtual].url;
-        const idVideo = extrairIdYoutube(urlAtual); // Extrai o ID automaticamente da URL
+        const idVideo = extrairIdYoutube(urlAtual);
 
         document.getElementById('video-yt').src = `https://www.youtube.com/embed/${idVideo}?rel=0`;
         document.getElementById('texto-mp3').innerHTML = playlistMp3[indexAtual].info;
         atualizarSetas(playlistMp3.length);
     }
 
-    // Renderização do filme atual
     function renderizarFilme() {
         const filmeAtual = filmesArray[indexAtual];
         document.getElementById('titulo-filme').textContent = filmeAtual.titulo;
@@ -171,14 +207,27 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarSetas(filmesArray.length);
     }
 
+    function renderizarJogo() {
+        const jogoAtual = jogosArray[indexAtual];
+        document.getElementById('titulo-jogo').textContent = jogoAtual.titulo;
+        document.getElementById('tagline-jogo').textContent = jogoAtual.tagline;
+        document.getElementById('descricao-jogo').textContent = jogoAtual.descricao;
+
+        const imgCapa = document.getElementById('capa-jogo');
+        imgCapa.src = jogoAtual.capa;
+        imgCapa.alt = jogoAtual.titulo;
+
+        atualizarSetas(jogosArray.length);
+    }
+
     // ==========================================
     // 3. CLIQUE NOS ITENS
     // ==========================================
     const todosOsItens = document.querySelectorAll('.item');
     todosOsItens.forEach(item => {
         item.addEventListener('click', (evento) => {
-            esconderTudo(); // Limpa a tela antes de abrir o novo item
-            indexAtual = 0; // Reseta a paginação
+            esconderTudo();
+            indexAtual = 0;
 
             if (evento.target.classList.contains('item-papeis')) {
                 itemAtivo = 'papel';
@@ -191,13 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderizarMp3();
 
             } else if (evento.target.classList.contains('item-cam')) {
-                // A câmera abre a lista de filmes/séries/animes
                 itemAtivo = 'filme';
                 document.getElementById('conteudo-filme').classList.remove('escondido');
                 renderizarFilme();
 
+            } else if (evento.target.classList.contains('item-psp')) {
+                itemAtivo = 'jogo';
+                document.getElementById('conteudo-jogo').classList.remove('escondido');
+                renderizarJogo();
+
             } else {
-                // Para PSP e Livros (Apenas mostram a imagem)
                 itemAtivo = 'simples';
                 document.getElementById('conteudo-simples').classList.remove('escondido');
                 document.getElementById('imagem-popup-simples').src = evento.target.src;
@@ -221,6 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'filme' && indexAtual < filmesArray.length - 1) {
                 indexAtual++;
                 renderizarFilme();
+            } else if (itemAtivo === 'jogo' && indexAtual < jogosArray.length - 1) {
+                indexAtual++;
+                renderizarJogo();
             }
         });
     }
@@ -236,6 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'filme' && indexAtual > 0) {
                 indexAtual--;
                 renderizarFilme();
+            } else if (itemAtivo === 'jogo' && indexAtual > 0) {
+                indexAtual--;
+                renderizarJogo();
             }
         });
     }
@@ -246,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnFechar) {
         btnFechar.addEventListener('click', () => {
             overlayPopup.classList.add('escondido');
-            setTimeout(esconderTudo, 300); // Limpa o conteúdo só depois que a animação de fechar acabar
+            setTimeout(esconderTudo, 300);
         });
     }
 });
