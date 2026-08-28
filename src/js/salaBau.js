@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // 1. LUZ E BAÚ (Mantido igual, está perfeito)
     setTimeout(() => {
         const overlay = document.querySelector('.overlay-transicao');
@@ -15,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 bau.classList.add('bau-aberto');
                 bau.src = 'src/imagens/bau_aberto.png';
                 document.getElementById('grupo-maos').classList.add('escondido');
-                
+
                 const grupoItens = document.getElementById('grupo-itens');
                 grupoItens.classList.remove('escondido');
-                
+
                 // Dispara a animação dos itens saindo de dentro do baú
                 setTimeout(() => {
                     grupoItens.classList.add('animar-itens');
@@ -45,16 +44,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const textosDoPapel = [
         `
-        <p><strong>Página 1:</strong> O diário foi encontrado aberto sobre a mesa de madeira empoeirada.</p>
-        <p>As páginas iniciais relatam eventos estranhos acontecendo na mansão durante a madrugada. Ninguém parecia saber a origem dos barulhos.</p>
-        <p>Se o texto continuar crescendo e ultrapassar o limite visual da folha, a barra de rolagem lateral vai aparecer automaticamente para o jogador poder ler tudo!</p>
+        <p><strong>Sabiá:</strong> <br> <i>Chico Buarque</i> <br>Vou voltar <br>
+Sei que ainda vou voltar <br>
+Para o meu lugar <br>
+Foi lá e é lá ainda lá <br>
+Que eu hei de ouvir cantar <br>
+Uma sabiá <br>
+A minha sabiá <br>
+​Vou voltar <br>
+Sei que ainda vou voltar <br>
+Vou deitar à sombra <br>
+De uma palmeira <br>
+Que já não há <br>
+Colher a flor <br>
+Que já não dá <br>
+​E contra a minha vontade <br>
+Mudar minha voz <br>
+A minha sabiá <br>
+Que canta melhor <br>
+Que a sabiá de lá</p>
         `,
         `
-        <p><strong>Página 2:</strong> "Encontrei a chave dourada escondida atrás do quadro antigo."</p>
-        <p>Continue investigando os outros cômodos com cuidado.</p>
+        <p><strong>O que é exílio?</strong> <br>Exílio é conhecido popularmente como o afastamento forçado de uma pessoa de sua própria terra natal, mas o conceito foi ganhando outros significados ao longo do tempo, deixando de ser só um fato geográfico. <br>
+Hoje, exílio também descreve o sentimento de não pertencer a um lugar, mesmo estando fisicamente nele. Existem várias formas diferentes atuais para descrevê-la. Algumas visíveis, outras implícitas no cotidiano.</p>
         `,
         `
-        <p><strong>Página 3:</strong> Fim do documento.</p>
+        <p><strong>O exílio do cotidiano</strong> <br>"Tudo aqui é um exílio."
+Essa frase mostra que o exílio não depende de fronteiras. Ele pode acontecer dentro de casa, de uma cidade ou de uma rotina, quando a pessoa e o lugar demarcam distinções. É um tipo de exílio silencioso, que se disfarça de normalidade e passa despercebido por quem está de fora.
+Exemplo do cotidiano: um adolescente que muda de escola e sente que não faz parte de nenhum grupo.</p>
+        `,
+        `
+        <p><strong>O exílio da língua</strong> <br>"Je ne parle bien."
+Essa expressão retrata a dificuldade de se comunicar por completo com outro grupo sobre suas dificuldades. É um exílio de quem é julgado e excluído por não se expressar de um certo jeito, sendo intitulado como despertencido. No cotidiano, isso aparece quando uma pessoa que geralmente vem da periferia tem sua maneira de falar ditado como "errado" em ambientes formais. Esse tipo de exílio evidencia como a linguagem também pode ser um território e como ficar de fora dele é uma barreira.
+</p>
+        `,
+        `
+        <p><strong>O exílio da saudade</strong> <br>Inspirado em "Canção do Exílio", de Gonçalves Dias.
+O poema mostra como a distância transforma a lembrança do lugar de origem, tornando-o quase perfeito na memória. Esse processo é natural: quem está longe tende a lembrar mais do que era bom e menos do que era difícil. É o exílio de quem carrega um lugar que talvez já não exista mais daquela forma porque o tempo muda tudo, inclusive o que ficou para trás. Voltar, muitas vezes, é confrontar essa diferença entre a lembrança idealizada e a realidade atual.</p>
         `
     ];
 
@@ -109,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             titulo: "Gachiakuta",
             tagline: "O exílio como punição para os marginalizados.",
             imagem: "src/imagens/gachiakuta.png",
-            descricao: "Rudo vive à margem em uma cidade flutuante, onde os ricos despejam seu lixo em um abismo abaixo. Acusado injustamente de um crime, ele é condenado ao exílio nesse mesmo abismo, junto ao lixo da sociedade. A série liga diretamente pobreza, injustiça e expulsão física, mostrando o exílio como ferramenta de controle de classe."
+            descricao: "O exílio assume uma dimensão social, espacial e sentimental. Após ser acusado injustamente de assassinato e jogado em meio ao Abismo, um lugar para onde são jogados tanto os lixos quanto aqueles considerados indesejáveis, o sentimento de não pertencimento se torna literal. o protagonista é expulso do mundo que, de certa forma, nunca o aceitou completamente. Assim, seu exílio não representa apenas a separação de sua casa, mas também um exílio sentimental: a sensação de estar afastado das pessoas e de uma sociedade à qual ele nunca conseguiu pertencer. Sua jornada no Abismo passa a representar não apenas uma luta por vingança, mas também uma busca por identidade, pertencimento e por um lugar onde aquilo que foi descartado possa finalmente ter valor."
         }
     ];
 
@@ -143,13 +169,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // ==========================================
+    // DADOS DAS NARRATIVAS (LIVRO) — todos relacionados a diferentes formas de exílio.
+    // ==========================================
+    const livrosArray = [
+        {
+            titulo: "Nome do Livro 1",
+            autor: "Nome do Autor 1",
+            foto: "src/imagens/autor1.jpg",
+            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+        },
+        {
+            titulo: "Nome do Livro 2",
+            autor: "Nome do Autor 2",
+            foto: "src/imagens/autor2.jpg",
+            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+        },
+        {
+            titulo: "Nome do Livro 3",
+            autor: "Nome do Autor 3",
+            foto: "src/imagens/autor3.jpg",
+            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+        }
+    ];
+
     // Função que reseta e esconde TODOS os conteúdos do pop-up
     function esconderTudo() {
-        document.getElementById('conteudo-simples').classList.add('escondido');
         document.getElementById('conteudo-papeis').classList.add('escondido');
         document.getElementById('conteudo-mp3').classList.add('escondido');
         document.getElementById('conteudo-filme').classList.add('escondido');
         document.getElementById('conteudo-jogo').classList.add('escondido');
+        document.getElementById('conteudo-livro').classList.add('escondido');
         setaEsquerda.classList.add('escondido');
         setaDireita.classList.add('escondido');
 
@@ -207,6 +257,19 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarSetas(filmesArray.length);
     }
 
+    function renderizarLivro() {
+        const livroAtual = livrosArray[indexAtual];
+        document.getElementById('titulo-livro').textContent = livroAtual.titulo;
+        document.getElementById('autor-livro').textContent = livroAtual.autor;
+        document.getElementById('descricao-livro').textContent = livroAtual.descricao;
+
+        const imgAutor = document.getElementById('foto-autor-livro');
+        imgAutor.src = livroAtual.foto;
+        imgAutor.alt = livroAtual.autor;
+
+        atualizarSetas(livrosArray.length);
+    }
+
     function renderizarJogo() {
         const jogoAtual = jogosArray[indexAtual];
         document.getElementById('titulo-jogo').textContent = jogoAtual.titulo;
@@ -249,12 +312,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('conteudo-jogo').classList.remove('escondido');
                 renderizarJogo();
 
-            } else {
-                itemAtivo = 'simples';
-                document.getElementById('conteudo-simples').classList.remove('escondido');
-                document.getElementById('imagem-popup-simples').src = evento.target.src;
-            }
+            } else if (evento.target.classList.contains('item-livro')) {
+                itemAtivo = 'livro';
+                document.getElementById('conteudo-livro').classList.remove('escondido');
+                renderizarLivro();
 
+            } else {
+                console.warn('Item clicado sem classe de modo reconhecida:', evento.target);
+            }
             overlayPopup.classList.remove('escondido');
         });
     });
@@ -276,6 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'jogo' && indexAtual < jogosArray.length - 1) {
                 indexAtual++;
                 renderizarJogo();
+            } else if (itemAtivo === 'livro' && indexAtual < livrosArray.length - 1) {
+                indexAtual++;
+                renderizarLivro();
             }
         });
     }
@@ -294,6 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (itemAtivo === 'jogo' && indexAtual > 0) {
                 indexAtual--;
                 renderizarJogo();
+            } else if (itemAtivo === 'livro' && indexAtual > 0) {
+                indexAtual--;
+                renderizarLivro();
             }
         });
     }
