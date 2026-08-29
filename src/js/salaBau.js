@@ -106,6 +106,20 @@ O poema mostra como a distância transforma a lembrança do lugar de origem, tor
             <p>A “rês desgarrada” é o animal que se afastou do seu rebanho. Isso cria a imagem de alguém arrancado ou separado de seu local de origem, que passa a vaguear sem encontrar um lugar.</p>
             <p>Neste caso, o exílio não é uma exclusão explícita. É um exílio causado por circunstâncias sociais e econômicas: o indivíduo é forçado a deixar seu espaço de origem e, ao chegar à cidade, continua a não se sentir completamente parte dela.</p>
             `
+        },
+        {
+            url: "https://youtu.be/VQ2bBfG0ilc?si=aESoTDFWXJWW4Q1G",
+            info: `
+            <p><strong>“Eminência Parda” — Emicida</strong></p>
+            <p>No contexto de "Eminência Parda",o Emicida aborda a ideia de exílio primordialmente como uma consequência do racismo e das desigualdades sociais. Trata-se de um exílio que não é necessariamente geográfico, mas sim simbólico: indivíduos negros, por uma questão histórica, são frequentemente afastados de esferas de poder, reconhecimento e inclusão.
+</p>
+            <p>Uma passagem que ilustra isso é: <br> &gt; "Coloco terno por prazer / É inferior ou para subverter?"</p>
+            <p>Nesse verso, o Emicida levanta a questão da posição esperada pela sociedade para pessoas negras. O termo "inferior" descreve esse lugar de subordinação imposto socialmente, enquanto "subverter" simboliza a resistência a essa condição.</p>
+            <p>Essa perspectiva se torna ainda mais clara com: <br>&gt; "Foram longos anos na defesa / Mas o negro não chora, levanta, meu parceiro"</p>
+            <p>A expressão "na defesa" evoca a imagem de alguém que permaneceu por um extenso período em posição de autodefesa e marginalizado. Contudo, a canção transforma esse distanciamento em uma forma de resistência e na busca por validação. </p>
+            <p>Ademais, o refrão "Sobrevivi à morte, agora sei o meu destino" pode ser associado ao exílio como uma jornada de escape de uma realidade marcada pela violência e pela exclusão, rumo à construção de um novo espaço de pertencimento. Sendo o verso que mais caracteriza o "Exílio" da música, ao menos em minha opinião.</p>
+            <p>Dessa forma, "Eminência Parda" se conecta com o exílio ao retratar a experiência daqueles que foram marginalizados por uma sociedade marcada pela injustiça, mas que conseguem transformar essa marginalização em resistência, conquista de espaço e afirmação de sua própria identidade.</p>
+            `
         }
     ];
 
