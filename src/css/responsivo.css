@@ -142,7 +142,7 @@
   }
   
   #grupo-itens.animar-itens .item-livros {
-    transform: translate(14vw, -2vh) scale(1) rotate(var(--rot));
+    transform: translate(16vw, -2vh) scale(1) rotate(var(--rot));
   }
 }
 
