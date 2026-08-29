@@ -7,9 +7,9 @@
    -------------------------------------- */
 @media (max-width: 768px) {
   .pagina-inicial .letras_diferentes {
-    width: 130vw;        /* Aumenta a largura para ocupar quase a tela inteira */
-    max-width: none;     /* Remove qualquer limite de tamanho */
-    top: 42%;            /* Empurra o texto para baixo, perto da cabeça */
+    width: 130vw;        
+    max-width: none;     
+    top: 42%;            
   }
 
   .texto-canto {
@@ -80,25 +80,30 @@
 }
 
 /* --------------------------------------
-   3. PÁGINA DO BAÚ (MOBILE) - TOTALMENTE CENTRALIZADO
+   3. PÁGINA DO BAÚ (MOBILE) - CENTRALIZADO E COM BAÚ NO FUNDO
    -------------------------------------- */
 @media (max-width: 768px) {
   
-  /* Garante que o baú fique cravado no centro exato da tela */
   .pagina-bau .bau-interativo {
     width: 48vw !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     bottom: 12%;
+    z-index: 5; 
   }
 
-  .pagina-bau .bau-interativo.bau-aberto {
+  .pagina-bau .bau-interativo.bau-aberto,
+  .pagina-bau .bau-interativo.aberto {
     width: 60vw !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
+    z-index: 1 !important;          
   }
 
-  /* Mãos centralizadas e proporcionais */
+  #grupo-itens {
+    z-index: 10 !important;
+  }
+
   .pagina-bau .mao {
     width: clamp(35px, 10vw, 55px);
   }
@@ -109,22 +114,17 @@
   .mao-4 { bottom: 35%; right: 18%; }
   .mao-5 { bottom: 15%; right: 10%; }
 
-  /* --------------------------------------
-     CORREÇÃO DA ÂNCORA DOS ITENS (CENTRO EXATO)
-     -------------------------------------- */
   #grupo-itens .item {
-    left: 50% !important; /* Força o ponto zero exato no meio da tela */
+    left: 50% !important;
     bottom: 25% !important;
   }
 
-  /* Tamanhos dos itens em proporção (vw) */
   .item-psp    { width: 22vw; }
   .item-papeis { width: 18vw; }
   .item-cam    { width: 22vw; }
   .item-mp3    { width: 14vw; }
   .item-livros { width: 19vw; }
 
-  /* Explosão perfeitamente simétrica a partir do centro (50%) */
   #grupo-itens.animar-itens .item-papeis {
     transform: translate(-50%, -32vh) scale(1) rotate(var(--rot));
   }
@@ -146,78 +146,135 @@
   }
 }
 
+
 /* --------------------------------------
    4. MODAIS E CONTEÚDOS DOS ITENS
    -------------------------------------- */
 @media (max-width: 768px) {
 
-  /* Botão fechar menor e mais colado na borda */
   #btn-fechar {
     top: 15px; 
     right: 15px;
     width: 40px;
-  }
-
-  /* Setas de avançar menores */
-  .mao-aponta {
-    width: 45px;
+    z-index: 10001 !important;
   }
 
   /* ==================
      MODO PAPEL
      ================== */
   .texto-sobre-papel {
-    padding: 22% 12% 15% 12%; /* Empurra mais pro meio pra não pegar as bordas rasgadas */
+    padding: 22% 12% 15% 12%; 
   }
   #texto-papel {
-    font-size: 13px; /* Garante que caiba no mobile */
+    font-size: 13px; 
   }
 
   /* ==================
-     MODO MP3
+     MODO MP3 / MP4 (LAYOUT MOBILE ROBUSTO E CLICÁVEL)
      ================== */
   #container-mp3 {
-    flex-direction: column; /* Empilha o MP3 em cima e o texto embaixo */
-    gap: 10px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
   }
+
   .fundo-mp3, .fundo-caixa {
-    max-height: 40vh; /* Limita a altura para caberem os dois na tela */
-    max-width: 85vw;
+    width: 82vw !important;
+    max-width: 340px !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
+
   .texto-sobre-caixa {
-    top: 12%; 
-    left: 15%; 
-    width: 75%; 
-    height: 75%;
-    font-size: 12px; /* Fonte reduzida para celular */
+    top: 25% !important; 
+    left: 18% !important; 
+    width: 64% !important; 
+    height: 45% !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    overflow-y: auto !important;
+  }
+
+  /* Setas e mãos de navegação: usamos os IDs reais (#seta-esquerda / #seta-direita)
+     porque, no HTML, elas ficam FORA do #container-mp3. O #container-mp3 é
+     position:fixed cobrindo a tela inteira com z-index:9999, então as setas
+     precisam de um z-index MAIOR pra ficar clicáveis por cima dele. */
+  #seta-esquerda,
+  #seta-direita {
+    position: fixed !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 100000 !important;
+    display: block !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    width: 48px !important;
+    height: auto !important;
+  }
+
+  /* Seta Esquerda (Fixada na borda esquerda do celular) */
+  #seta-esquerda {
+    left: 15px !important;
+    right: auto !important;
+  }
+
+  /* Seta Direita (Fixada na borda direita do celular).
+     SEM scaleX(-1): a imagem seta_direita.jpeg já aponta pra direita sozinha,
+     espelhar ela faz parecer outra mão apontando pra esquerda. */
+  #seta-direita {
+    right: 15px !important;
+    left: auto !important;
   }
 
   /* ==================
      MODO FILME (CÂMERA)
      ================== */
+  #container-filme {
+    width: min(92vw, 460px);
+    height: auto;
+    aspect-ratio: 470 / 530;
+  }
   .texto-sobre-filme {
-    padding: 15% 12% 10% 12%;
+    padding: 23% 10% 8% 10%;
   }
-  #titulo-filme { font-size: 1.2rem; margin-bottom: 5px; }
-  #tagline-filme { font-size: 0.85rem; margin-bottom: 8px; }
-  #imagem-filme { 
-    width: 65px; 
-    margin: 0 0 8px 10px; 
-    border-width: 3px; 
+  #titulo-filme {
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
   }
-  #descricao-filme { 
-    font-size: 11px; 
-    margin-left: 0px; 
+  #tagline-filme {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+  #corpo-filme {
+    -webkit-overflow-scrolling: touch;
+  }
+  #imagem-filme {
+    width: 58px;
+    margin: 0 0 8px 10px;
+    border-width: 3px;
+  }
+  #descricao-filme {
+    font-size: 11px;
+    line-height: 1.45;
+    margin-left: 0px;
   }
 
   /* ==================
      MODO JOGO (PSP)
      ================== */
   #container-jogo {
-    gap: 0; /* Aproxima o PSP da caixa de info */
+    gap: 0; 
   }
   .capa-jogo {
-    /* Pequeno ajuste fino para alinhar a tela no PSP mobile */
     top: 31%; left: 27.5%; width: 45%; height: 33.5%;
   }
   .texto-sobre-caixa-jogo {
@@ -233,25 +290,47 @@
   /* ==================
      MODO LIVRO
      ================== */
+  #container-livro {
+    width: 95vw !important;
+    height: auto !important;
+  }
+
   .pagina-esquerda-livro {
-    left: 6%; 
-    width: 40%;
+    top: 18% !important;
+    left: 8% !important;
+    width: 38% !important;
+    height: 64% !important;
   }
+
   .pagina-direita-livro {
-    right: 6%; 
-    width: 42%;
+    top: 18% !important;
+    right: 8% !important;
+    width: 40% !important;
+    height: 64% !important;
   }
-  #titulo-livro { font-size: 1rem; margin-bottom: 2px;}
-  #autor-livro { font-size: 0.8rem; margin-bottom: 5px; padding-bottom: 4px; }
-  #descricao-livro { font-size: 10px; line-height: 1.4; }
+
+  #titulo-livro {
+    font-size: clamp(0.9rem, 3.5vw, 1.2rem) !important;
+    margin-bottom: 2px !important;
+  }
+
+  #autor-livro {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem) !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 4px !important;
+  }
+
+  #descricao-livro {
+    font-size: clamp(10px, 2.2vw, 13px) !important;
+    line-height: 1.35 !important;
+  }
 }
 
-/* Telas MUITO pequenas (ex: iPhone SE, antigões) */
 @media (max-width: 400px) {
   #texto-papel, .texto-sobre-caixa, #descricao-filme, #descricao-jogo, #descricao-livro {
-    font-size: 10px; /* Redução drástica para caber na telinha */
+    font-size: 10px; 
   }
   .mao-aponta {
-    width: 35px; /* Setas menores ainda */
+    width: 35px; 
   }
 }
