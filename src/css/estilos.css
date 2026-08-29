@@ -224,10 +224,10 @@ body.pagina-bau {
   z-index: 20;
 }
 
-/* Estado final: Circunferência perfeita com raio exato de 25% a partir do centro do baú */
+/* Estado final: Circunferência perfeita com raio exato de 25% a partir do centro do baú (Livro e Papéis trocados de lugar) */
 
-/* 1. Livro (Topo) */
-#grupo-itens.animar-itens .item-livros {
+/* 1. Papéis (Topo, onde ficava o livro) */
+#grupo-itens.animar-itens .item-papeis {
   transform: translateX(0%) translate(0vw, -18vw) scale(1) rotate(var(--rot));
   opacity: 1;
 }
@@ -250,50 +250,34 @@ body.pagina-bau {
   opacity: 1;
 }
 
-/* 5. Papéis (Inferior Direito) */
-#grupo-itens.animar-itens .item-papeis {
+/* 5. Livro (Inferior Direito, onde ficavam os papéis) */
+#grupo-itens.animar-itens .item-livros {
   transform: translate(20vw, 5vw) scale(1) rotate(var(--rot));
   opacity: 1;
 }
 
-/* Ordem de aparição exata: MP3 -> PSP -> Livro -> Câmera -> Notas */
-#grupo-itens.animar-itens .item-mp3    { transition-delay: 1s; }
+/* Ordem de aparição exata mantida: MP3 -> PSP -> Notas(Papéis) -> Câmera -> Livro */
+#grupo-itens.animar-itens .item-mp3    { transition-delay: 3s; }
 #grupo-itens.animar-itens .item-psp    { transition-delay: 2s; }
+#grupo-itens.animar-itens .item-papeis { transition-delay: 1s; }
+#grupo-itens.animar-itens .item-cam    { transition-delay: 2s; }
 #grupo-itens.animar-itens .item-livros { transition-delay: 3s; }
-#grupo-itens.animar-itens .item-cam    { transition-delay: 4s; }
-#grupo-itens.animar-itens .item-papeis { transition-delay: 5s; }
 
 /* Hover dos itens */
-.pagina-bau .item:not(.item-livros):hover {
+.pagina-bau .item:not(.item-papeis):hover {
   transform: scale(1.15) rotate(var(--rot));
 }
 
-.item-livros:hover {
-  transform: translateX(-50%) scale(1.15) rotate(var(--rot)); 
+.item-papeis:hover {
+  transform: translateX(0%) scale(1.15) rotate(var(--rot)); 
 }
 
 /* Tamanhos proporcionais dos itens ao redor do baú */
 .item-psp    { width: clamp(100px, 14vw, 150px); --rot: -20deg; }
-.item-livros { width: clamp(80px, 11vw, 125px);  --rot: 0deg;   }
+.item-papeis { width: clamp(70px, 10vw, 115px);  --rot: 0deg;   }
 .item-cam    { width: clamp(90px, 12vw, 135px);  --rot: -5deg;  }
 .item-mp3    { width: clamp(65px, 9vw, 110px);   --rot: -10deg; }
-.item-papeis { width: clamp(70px, 10vw, 115px);  --rot: -15deg; }
-
-/* Hover dos itens */
-.pagina-bau .item:not(.item-livros):hover {
-  transform: scale(1.15) rotate(var(--rot));
-}
-
-.item-livros:hover {
-  transform: translateX(-50%) scale(1.15) rotate(var(--rot)); 
-}
-
-/* Tamanhos proporcionais dos itens ao redor do baú */
-.item-psp    { width: clamp(100px, 14vw, 150px); --rot: -20deg; }
-.item-livros { width: clamp(80px, 11vw, 125px);  --rot: 0deg;   }
-.item-cam    { width: clamp(90px, 12vw, 135px);  --rot: -5deg;  }
-.item-mp3    { width: clamp(65px, 9vw, 110px);   --rot: -10deg; }
-.item-papeis { width: clamp(70px, 10vw, 115px);  --rot: -15deg; }
+.item-livros { width: clamp(80px, 11vw, 125px);  --rot: -15deg; }
 
 /* ==========================
    5. POP-UP (MODAL) E COMPONENTES

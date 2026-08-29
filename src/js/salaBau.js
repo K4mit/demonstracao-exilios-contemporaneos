@@ -174,22 +174,34 @@ O poema mostra como a distância transforma a lembrança do lugar de origem, tor
     // ==========================================
     const livrosArray = [
         {
-            titulo: "Nome do Livro 1",
-            autor: "Nome do Autor 1",
-            foto: "src/imagens/autor1.jpg",
-            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+            titulo: "Maria",
+            autor: "Conceição Evaristo",
+            foto: "src/imagens/conceicaoEvaristo.png",
+            descricao: "No conto 'Maria', de Conceição Evaristo, o exílio aparece principalmente como uma forma de exclusão social e abandono. Maria é afastada da sociedade por sua condição de mulher negra e pobre, enfrentando preconceito e falta de oportunidades. Assim, o exílio não representa apenas estar longe de um lugar, mas também sentir-se deslocada e sem pertencimento dentro da própria sociedade"
         },
         {
-            titulo: "Nome do Livro 2",
-            autor: "Nome do Autor 2",
-            foto: "src/imagens/autor2.jpg",
-            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+            titulo: "Beijo na Face",
+            autor: "Conceição Evaristo",
+            foto: "src/imagens/conceicaoEvaristo2.png",
+            descricao: "No conto “Beijo na Face”, de Conceição Evaristo, o exílio representa principalmente a sensação de estar presa e afastada de uma vida em que possa ser livre e feliz. A personagem Salinda vive um relacionamento marcado pelo controle e pela violência psicológica, sentindo-se isolada dentro da própria casa. Dessa forma, o exílio aparece como um afastamento emocional e social, causado pela falta de liberdade e pela opressão que ela enfrenta."
         },
         {
-            titulo: "Nome do Livro 3",
-            autor: "Nome do Autor 3",
-            foto: "src/imagens/autor3.jpg",
-            descricao: "Descrição de como esse livro se relaciona com o exílio..."
+            titulo: "A Metamorfose",
+            autor: "Franz Kafka",
+            foto: "src/imagens/franzKafka.png",
+            descricao: "Na novela “A Metamorfose”, de Franz Kafka, o exílio representa principalmente a rejeição e o descarte do indivíduo quando ele deixa de ser útil e produtivo. O personagem Gregor Samsa, após acordar transformado em um inseto, perde imediatamente sua capacidade de trabalhar e de sustentar a casa, passando a ser tratado como um fardo repugnante e sendo trancado pela própria família em seu quarto. Dessa forma, o exílio aparece como um isolamento cruel e utilitarista, causado pela quebra de seu papel de provedor e pela intolerância da família e da sociedade com aquele que não tem mais nada a oferecer materialmente."
+        },
+        {
+            titulo: "O Alienista",
+            autor: "Machado de Assis",
+            foto: "src/imagens/machadoAssis.png",
+            descricao: "No conto “O Alienista”, de Machado de Assis, o exílio representa principalmente a marginalização e o isolamento do indivíduo quando ele é percebido como diferente ou ameaçador pela sociedade. O personagem Dr. Simão Bacamarte, após ser julgado como louco e internado em um asilo, passa a ser tratado como um objeto de estudo e curiosidade, sendo privado de sua liberdade e dignidade. Dessa forma, o exílio aparece como uma forma de controle social e opressão psicológica, causada pela falta de compreensão e pela intolerância da sociedade com aquele que não se encaixa nos padrões estabelecidos."
+        },
+        {
+            titulo: "Quarto de Despejo",
+            autor: "Carolina de Jesus",
+            foto: "src/imagens/carolinaJesus.png",
+            descricao: "No diário “Quarto de Despejo”, de Carolina Maria de Jesus, o exílio representa principalmente a exclusão geográfica, social e econômica imposta à população negra e pobre urbana. A autora, uma catadora de recicláveis e mãe solo vivendo na favela do Canindé, em São Paulo, documenta sua luta diária contra a fome e a invisibilidade extrema. Dessa forma, o exílio aparece de maneira brutal e estrutural: a favela é retratada literalmente como o 'quarto de despejo' da metrópole — o lugar isolado para onde a sociedade elitizada empurra, esconde e abandona os indivíduos que ela marginaliza, negando-lhes o acesso ao desenvolvimento, ao pertencimento e à própria dignidade humana."
         }
     ];
 
